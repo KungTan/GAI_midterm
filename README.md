@@ -2,8 +2,9 @@
 
 這是一個基於 **Streamlit** 開發的互動式數位旅遊手冊，整合了 AI 視覺藝廊、互動式地圖以及客製化的餐點點餐建議，專門為九州 4 天 3 夜行程所設計。
 
-## 🔗 線上展示 (Live Demo)
-您可以在此直接線上體驗應用程式：  
+## 🔗 線上展示
+
+可以在此體驗應用程式：  
 👉 **[https://gai-group5-midterm.streamlit.app/](https://gai-group5-midterm.streamlit.app/)**
 
 ## 🚀 快速啟動指南
