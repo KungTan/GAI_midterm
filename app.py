@@ -145,7 +145,7 @@ with tab3:
     """, unsafe_allow_html=True)
     
     # Keep the user's provided Iframe here as a 100% reliable backup
-    map_html = '<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1ky2nFWjXYt12xuniqzW0fbIno-ILWTc&ehbc=2E312F" width="100%" height="600"></iframe>'
+    map_html = '<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1NK0R9v4o3eAa8VjAjD9YMqBeiNhrwM4&ehbc=2E312F" width="100%" height="600"></iframe>'
     st.components.v1.html(map_html, height=620)
 
 with tab4:

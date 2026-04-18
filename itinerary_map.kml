@@ -22,40 +22,40 @@
       <Point><coordinates>130.3764,33.5847,0</coordinates></Point>
     </Placemark>
     <Placemark>
+      <name>三井LaLaport福岡</name>
+      <description>福岡県福岡市博多区那珂6丁目23-1 / 2小時</description>
+      <styleUrl>#blue_marker</styleUrl>
+      <Point><coordinates>130.4403,33.5650,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
       <name>福岡塔</name>
-      <description>福岡県福岡市早良区百道浜2丁目3-26 / 1小時</description>
+      <description>福岡県福岡市早良区百道浜2丁目3-26 / 1.5小時</description>
       <styleUrl>#blue_marker</styleUrl>
       <Point><coordinates>130.3515,33.5933,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>三井LaLaport福岡</name>
-      <description>福岡県福岡市博多区那珂6丁目23-1 / 2-3小時</description>
-      <styleUrl>#blue_marker</styleUrl>
-      <Point><coordinates>130.4431,33.5623,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
       <name>笑樂牛腸鍋博多車站店</name>
-      <description>福岡県福岡市博多区博多駅中央街1-1 / 晚餐</description>
+      <description>福岡県福岡市博多區博多駅中央街1-1 / 晚餐</description>
       <styleUrl>#red_marker</styleUrl>
       <Point><coordinates>130.4205,33.5898,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>太宰府天滿宮</name>
+      <description>福岡県太宰府市宰府4丁目7-1 / 2.5小時</description>
+      <styleUrl>#blue_marker</styleUrl>
+      <Point><coordinates>130.5348,33.5215,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>柳川遊船</name>
       <description>福岡県柳川市三橋町下百町1-6 / 2小時</description>
       <styleUrl>#blue_marker</styleUrl>
-      <Point><coordinates>130.4076,33.1648,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>太宰府天滿宮</name>
-      <description>福岡県太宰府市宰府4丁目7-1 / 2小時</description>
-      <styleUrl>#blue_marker</styleUrl>
-      <Point><coordinates>130.5348,33.5215,0</coordinates></Point>
+      <Point><coordinates>130.4168,33.1667,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>中洲屋台街</name>
       <description>福岡県福岡市博多區中洲1丁目 / 晚餐宵夜</description>
       <styleUrl>#red_marker</styleUrl>
-      <Point><coordinates>130.4065,33.5915,0</coordinates></Point>
+      <Point><coordinates>130.4060,33.5930,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>由布院湯之坪街道</name>
@@ -85,17 +85,17 @@
       <name>元祖博多明太重</name>
       <description>福岡県福岡市中央区西中洲6-15 / 晚餐</description>
       <styleUrl>#red_marker</styleUrl>
-      <Point><coordinates>130.4031,33.5902,0</coordinates></Point>
+      <Point><coordinates>130.4041,33.5912,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>Day 1 路徑</name>
       <styleUrl>#day1_line</styleUrl>
-      <LineString><coordinates>130.3764,33.5847,0 130.3515,33.5933,0 130.4431,33.5623,0 130.4205,33.5898,0</coordinates></LineString>
+      <LineString><coordinates>130.3764,33.5847,0 130.4403,33.5650,0 130.3515,33.5933,0 130.4205,33.5898,0</coordinates></LineString>
     </Placemark>
     <Placemark>
       <name>Day 2 路徑</name>
       <styleUrl>#day2_line</styleUrl>
-      <LineString><coordinates>130.4076,33.1648,0 130.5348,33.5215,0 130.4065,33.5915,0</coordinates></LineString>
+      <LineString><coordinates>130.5348,33.5215,0 130.4168,33.1667,0 130.4060,33.5930,0</coordinates></LineString>
     </Placemark>
     <Placemark>
       <name>Day 3 路徑</name>
@@ -105,7 +105,7 @@
     <Placemark>
       <name>Day 4 路徑</name>
       <styleUrl>#day4_line</styleUrl>
-      <LineString><coordinates>130.4208,33.5897,0 131.301,32.701,0 130.4031,33.5902,0</coordinates></LineString>
+      <LineString><coordinates>130.4208,33.5897,0 131.301,32.701,0 130.4041,33.5912,0</coordinates></LineString>
     </Placemark>
   </Document>
 </kml>
