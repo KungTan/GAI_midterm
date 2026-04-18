@@ -1,0 +1,54 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+.main {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.stApp {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.hero-container {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    text-align: center;
+}
+
+.itinerary-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-left: 5px solid #ff4b4b;
+}
+
+.day-header {
+    color: #1e3a8a;
+    border-bottom: 2px solid #1e3a8a;
+    padding-bottom: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.marker-food { color: #ff4b4b; font-weight: bold; }
+.marker-sight { color: #1e3a8a; font-weight: bold; }
+.marker-klook { color: #f59e0b; font-weight: bold; }
+
+.stButton>button {
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+.stButton>button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
