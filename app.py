@@ -113,7 +113,7 @@ with tab1:
                     if pd.notna(food):
                         st.write(f"  └ 🍴 {food}")
             except Exception as e:
-                st.error("無法讀取雨天備案資料。")
+                st.error(f"無法讀取雨天備案資料：{e}")
         else:
             day_num_t1 = {"第一天": 1, "第二天": 2, "第三天": 3, "第四天": 4}[day_selection_t1]
             
