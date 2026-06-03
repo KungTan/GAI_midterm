@@ -25,6 +25,7 @@ pip install streamlit pandas pydeck
 
 - `app.py`: 主程式邏輯
 - `map_internal.csv`: 行程座標與詳細資料
+- `Fukuoka_Rainy_Day_Contingency_Plan.xlsx`: 雨天備案行程資料
 - `itinerary_map.kml`: 供下載的地圖路徑檔
 - `all.png` / `day1_new.png`...: 各類 AI 生成的視覺圖片
 - `itenerary_new.png`: 行程總覽表
@@ -44,7 +45,7 @@ streamlit run app.py
 
 ## ✨ 核心特色
 
-- **📅 詳細行程細節**：動態展示每日行程、通車時間與景點地圖連結。
+- **📅 詳細行程細節**：動態展示每日行程、通車時間與景點地圖精確連結，並內建「雨天備案」全室內特輯行程。
 - **🖼️ AI 視覺藝廊**：展示由 AI 生成的虛擬日系場景，提升旅遊儀式感。
 - **🗺️ 互動數位地圖**：整合 Google My Maps，即時查看路線顏色與定點標記。
 - **🍱 餐點品項推薦**：提供中洲屋台「零剩食」點餐策略，包含營養與永續分析。

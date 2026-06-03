@@ -77,22 +77,65 @@ with tab1:
         st.markdown("### 🗒️ 每日行程安排")
         
         # 恢復區域性的日期選擇器
-        day_selection_t1 = st.selectbox("選擇查看日期", ["第一天", "第二天", "第三天", "第四天"], key="tab1_day")
-        day_num_t1 = {"第一天": 1, "第二天": 2, "第三天": 3, "第四天": 4}[day_selection_t1]
+        day_selection_t1 = st.selectbox("選擇查看日期", ["第一天", "第二天", "第三天", "第四天", "雨天備案"], key="tab1_day")
         
-        current_day_df = df_full[df_full['Day'] == day_num_t1]
-        
-        if current_day_df.empty:
-            st.warning("尚無此日期的行程資料。")
+        if day_selection_t1 == "雨天備案":
+            st.info("☔ 這是為您準備的雨天備案行程：福岡室內特輯（博多與天神商圈全室內連線）")
+            try:
+                rain_df = pd.read_excel('Fukuoka_Rainy_Day_Contingency_Plan.xlsx', skiprows=3)
+                for _, r in rain_df.iterrows():
+                    route = r['詳細路線與預估通車時間 (單程)']
+                    food = r['必吃美食標記']
+                    if pd.notna(route):
+                        # Simple split to make it look nicer
+                        parts = str(route).split('(', 1)
+                        title = parts[0].strip()
+                        
+                        import urllib.parse
+                        
+                        if '→' in title:
+                            title_parts = title.split('→')
+                            prefix = title_parts[0].strip()
+                            dest = title_parts[1].strip()
+                            
+                            # Prepare a clean search term for Google Maps
+                            search_term = dest.split('/')[0].strip() if '/' in dest else dest
+                            query_str = urllib.parse.quote(search_term)
+                            
+                            st.markdown(f"🚩 **{prefix} → [{dest}](https://www.google.com/maps/search/?api=1&query={query_str})**")
+                        else:
+                            search_term = title.replace('【上午】', '').replace('【下午】', '').replace('【傍晚】', '').replace('【晚上】', '').strip()
+                            query_str = urllib.parse.quote(search_term)
+                            st.markdown(f"🚩 **[{title}](https://www.google.com/maps/search/?api=1&query={query_str})**")
+                            
+                        if len(parts) > 1:
+                            st.caption(f"🚶‍♂️ ({parts[1]}")
+                    if pd.notna(food):
+                        st.write(f"  └ 🍴 {food}")
+            except Exception as e:
+                st.error("無法讀取雨天備案資料。")
         else:
-            for _, r in current_day_df.iterrows():
-                icon = "📍" if r['分類'] == '景點' else "🍴" if r['分類'] == '美食' else "🚩"
-                st.markdown(f"{icon} **[{r['地點名稱']}](https://www.google.com/maps/search/?api=1&query={r['lat']},{r['lon']})**")
-                # Show travel time if it exists
-                if '通車時間' in r and pd.notna(r['通車時間']):
-                    st.caption(f"🚌 {r['通車時間']}")
-                st.write(f"  └ {r['地址']}")
-                st.caption(f"  停留時間：{r['停留時間']}")
+            day_num_t1 = {"第一天": 1, "第二天": 2, "第三天": 3, "第四天": 4}[day_selection_t1]
+            
+            current_day_df = df_full[df_full['Day'] == day_num_t1]
+            
+            if current_day_df.empty:
+                st.warning("尚無此日期的行程資料。")
+            else:
+                for _, r in current_day_df.iterrows():
+                    icon = "📍" if r['分類'] == '景點' else "🍴" if r['分類'] == '美食' else "🚩"
+                    # 舊方式：使用經緯度
+                    #st.markdown(f"{icon} **[{r['地點名稱']}](https://www.google.com/maps/search/?api=1&query={r['lat']},{r['lon']})**")
+                    # 新方式：使用名稱（更精確）
+                    import urllib.parse
+                    query_name = urllib.parse.quote(str(r['地點名稱']))
+                    st.markdown(f"{icon} **[{r['地點名稱']}](https://www.google.com/maps/search/?api=1&query={query_name})**")
+                   
+                    # Show travel time if it exists
+                    if '通車時間' in r and pd.notna(r['通車時間']):
+                        st.caption(f"🚌 {r['通車時間']}")
+                    st.write(f"  └ {r['地址']}")
+                    st.caption(f"  停留時間：{r['停留時間']}")
 
 with tab2:
     st.markdown("## 🖼️ AI 視覺藝廊")
@@ -167,7 +210,7 @@ with tab4:
     
     with col_menu:
         if Path("example.jpg").exists():
-            st.image("example.jpg", caption="屋台風味菜單參考 (example.jpg)", use_container_width=True)
+            st.image("example.jpg", caption="屋台風味菜單參考 (example.jpg)", width="stretch")
             st.markdown("""
             > **營養平衡建議**：目前菜單單品多偏向肉類與澱粉。為增加纖維量並解膩，系統已預選「關東煮拼盤」中的大根來平衡飽足感。
             """)
