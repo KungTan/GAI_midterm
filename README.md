@@ -5,7 +5,7 @@
 ## 🔗 線上展示
 
 可以在此體驗應用程式：  
-👉 **[https://gai-group5-midterm.streamlit.app/](https://gai-group5-midterm.streamlit.app/)**
+👉 **[https://gai-group5-final.streamlit.app/](https://gai-group5-final.streamlit.app/)**
 
 ## 🚀 快速啟動指南
 
