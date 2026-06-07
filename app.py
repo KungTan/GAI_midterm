@@ -16,7 +16,43 @@ def get_itinerary():
     except:
         return pd.DataFrame()
 
+@st.cache_data
+def get_walking_info():
+    try:
+        df_walk = pd.read_excel('步行資訊.xlsx')
+        # 尋找包含「地點名稱」的列作為標題
+        header_idx = df_walk[df_walk.iloc[:, 0] == '地點名稱'].index[0]
+        df_walk.columns = df_walk.iloc[header_idx]
+        df_walk = df_walk.iloc[header_idx+1:].reset_index(drop=True)
+        
+        # 確保為數值型態
+        df_walk['壯年步行(基準)'] = pd.to_numeric(df_walk['壯年步行(基準)'], errors='coerce')
+        df_walk['搭車時間(分)'] = pd.to_numeric(df_walk['搭車時間(分)'], errors='coerce')
+
+        # 計算不同年齡層的步行與通勤時間
+        df_walk['兒童步行'] = (df_walk['壯年步行(基準)'] * 1.5).round()
+        df_walk['老年步行'] = (df_walk['壯年步行(基準)'] * 1.8).round()
+
+        df_walk['壯年總通勤'] = df_walk['搭車時間(分)'] + df_walk['壯年步行(基準)']
+        df_walk['兒童總通勤'] = df_walk['搭車時間(分)'] + df_walk['兒童步行']
+        df_walk['老年總通勤'] = df_walk['搭車時間(分)'] + df_walk['老年步行']
+        
+        return df_walk
+    except Exception as e:
+        print(f"Error loading walking info: {e}")
+        return pd.DataFrame()
+
 df_full = get_itinerary()
+df_walk_info = get_walking_info()
+
+# --- SIDEBAR SETTINGS ---
+st.sidebar.title("⚙️ 行程偏好設定")
+physical_condition = st.sidebar.radio(
+    "👥 同行者體能狀態",
+    options=["一般/壯年", "攜帶兒童", "有長輩同行"],
+    index=0,
+    help="系統將根據您的選擇，自動調整各景點的預估步行與總通勤時間。"
+)
 
 # --- HEADER SECTION ---
 st.markdown('<div style="text-align: left; padding: 1rem 0;">', unsafe_allow_html=True)
@@ -134,6 +170,28 @@ with tab1:
                     # Show travel time if it exists
                     if '通車時間' in r and pd.notna(r['通車時間']):
                         st.caption(f"🚌 {r['通車時間']}")
+                        
+                    # 顯示不同年齡層的步行資訊
+                    if not df_walk_info.empty:
+                        walk_info = df_walk_info[df_walk_info['地點名稱'] == r['地點名稱']]
+                        if not walk_info.empty:
+                            w = walk_info.iloc[0]
+                            # 確定資料存在才顯示
+                            if pd.notna(w['壯年總通勤']):
+                                if physical_condition == "一般/壯年":
+                                    info_text = f"👨 <b>一般/壯年</b>：預估步行 {w['壯年步行(基準)']:.0f} 分 ｜ 總通勤 {w['壯年總通勤']:.0f} 分"
+                                elif physical_condition == "攜帶兒童":
+                                    info_text = f"👦 <b>攜帶兒童</b>：預估步行 {w['兒童步行']:.0f} 分 ｜ 總通勤 {w['兒童總通勤']:.0f} 分"
+                                else:
+                                    info_text = f"👴 <b>有長輩同行</b>：預估步行 {w['老年步行']:.0f} 分 ｜ 總通勤 {w['老年總通勤']:.0f} 分"
+
+                                st.markdown(f"""
+                                <div style="font-size:0.9rem; color:#444; background-color:#f8f9fa; padding:10px; border-radius:8px; margin-bottom:10px; border-left:4px solid #4285F4;">
+                                    🚶‍♂️ <b>依同行者狀態預估時間</b><br>
+                                    {info_text}
+                                </div>
+                                """, unsafe_allow_html=True)
+
                     st.write(f"  └ {r['地址']}")
                     st.caption(f"  停留時間：{r['停留時間']}")
 
